@@ -1,0 +1,25 @@
+{
+  "name": "ticketit",
+  "version": "1.0.0",
+  "description": "this is a ticket shop application that enables you sell and buy event tickets",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon server"
+  },
+  "keywords": [
+    "ticket",
+    "event",
+    "places",
+    "buy"
+  ],
+  "author": "Kelechi oliver",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.10",
+    "validator": "^10.11.0"
+  }
+}
