@@ -19,14 +19,14 @@ const registerValidator = data =>{
     if(validator.isEmpty(data.email)){
         errors.email = "Email field is required"
     }
-    if(!validator.isEmail('data.email')){
+    if(!validator.isEmail(data.email)){
         errors.email = 'Email is invalid'
     }
     if(validator.isEmpty(data.password)){
         errors.password = "Password field is required"
     }
-    if(!validator.isLength(data.password,{min: 6, max: 8})){
-        errors.password = "Password must be atleast 6 characters"
+    if(!validator.isLength(data.password,{min: 6, max: 20})){
+        errors.password = "Password must be atleast 6 and most 8"
     }
     if(validator.isEmpty(data.password2)){
         errors.password2 = "Confirm password field is required"
@@ -51,7 +51,7 @@ const loginValidator = data =>{
     if(validator.isEmpty(data.email)){
         errors.email = "Email field is required"
     }
-    if(!validator.isEmail('data.email')){
+    if(!validator.isEmail(data.email)){
         errors.email = 'Email is invalid'
     }
     if(validator.isEmpty(data.password)){

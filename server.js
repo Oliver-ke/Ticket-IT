@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const passport = require('passport')
 
 //Setup the rest endpoint
 const payment = require('./routes/payments');
@@ -11,6 +12,12 @@ const app = express();
 
 //allow cross side request
 app.use(cors());
+
+
+//auth middleware
+app.use(passport.initialize())
+
+require('./config/passport')(passport);
 
 //setup body-perser
 app.use(express.urlencoded({extended: false}));
