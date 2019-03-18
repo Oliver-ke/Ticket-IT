@@ -63,7 +63,7 @@ router.post('/login', (req,res) =>{
         User.findOne({email})
             .then(user =>{
                 if(!user){
-                    errors.email = 'Incorrect Password of Email'
+                    errors.email = 'Incorrect Password or Email'
                     return res.status(404).json(errors)
                 }else{
                     bcrypt.compare(password, user.password)
@@ -83,7 +83,7 @@ router.post('/login', (req,res) =>{
                                     }
                                 );
                             }else{
-                                errors.password = 'Incorrect Password of Email'
+                                errors.password = 'Incorrect Password or Email'
                                 return res.status(400).json(errors);
                             }
                         });

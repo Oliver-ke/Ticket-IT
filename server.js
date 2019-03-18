@@ -14,11 +14,6 @@ const app = express();
 app.use(cors());
 
 
-//auth middleware
-app.use(passport.initialize())
-
-require('./config/passport')(passport);
-
 //setup body-perser
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
@@ -31,16 +26,22 @@ mongoose.connect(db,{useNewUrlParser: true})
     .then(() =>console.log('mongoDb connected'))
     .catch((err) => console.log("Error connecting to Cloud db"));
 
-//setup auth and more
 
+
+//setup auth middle ware
+app.use(passport.initialize())
+require('./config/passport')(passport);
 
 //Route middleware
 app.use('/payments',payment);
 app.use('/tickets',ticket);
 app.use('/users',user);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 app.listen(port,  () =>{
     console.log(`Server running on port ${port}`)
 })
+
+
+
 

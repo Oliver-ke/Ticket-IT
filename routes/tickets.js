@@ -32,6 +32,20 @@ router.get('/:id', (req,res) =>{
     }
 })
 
+
+//route: /tickets/user/:id
+//access: private
+//method: GET
+//desc: gets all ticket for a particular user
+router.get('/user/:userId', (req,res) =>{
+    const {userId} = req.params
+    if(userId){
+        Ticket.find({userId})
+            .then(tickets => res.json(ticket))
+            .catch(err => {console.log(err); res.json({mssg: 'Error Ocured'})})
+    }
+})
+
 //@route: /ticket
 //@access: private
 //@method: POST
@@ -67,6 +81,30 @@ router.delete('/delete/:id', (req,res) =>{
     else{
         res.json({msg: 'please provide a valid id'})
     }  
+})
+
+
+//@route: tickets/edit/:id
+//@access: private
+//@method: DELETE
+router.put('/edit/:id', (req,res) =>{
+    //check for the users normal
+    const id =req.params.id;
+    const newData = req.body;
+    const {isValid,errors} = ticketValidator(newData);
+    if(!isValid){
+        res.json({mssg: 'could not edit ticket', errors})
+    }else{
+        if(id){
+            Ticket.findByIdAndUpdate(id,newData)
+                .then(ticket => res.json(ticket))
+                .catch(err => {console.log(err); res.json({mssg: 'error updating ticket'})})   
+        }
+        else{
+            res.json({msg: 'please provide a valid id'})
+        }  
+    }
+   
 })
 
 module.exports = router;

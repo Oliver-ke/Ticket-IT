@@ -6,10 +6,10 @@ const ticketSchema = new Schema({
         type: String,
         required: true
     },
-    // userId: {
-    //     type: Schema.Types.ObjectId,
-    //     ref:'ticketUsers'
-    // },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref:'ticketUsers'
+    },
     amount: {
         type: Number,
         required: true
