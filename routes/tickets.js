@@ -39,9 +39,10 @@ router.get('/:id', (req,res) =>{
 //desc: gets all ticket for a particular user
 router.get('/user/:userId', (req,res) =>{
     const {userId} = req.params
+    console.log(userId)
     if(userId){
         Ticket.find({userId})
-            .then(tickets => res.json(ticket))
+            .then(tickets => res.json(tickets))
             .catch(err => {console.log(err); res.json({mssg: 'Error Ocured'})})
     }
 })
@@ -69,12 +70,15 @@ router.post('/', (req,res) =>{
 router.delete('/delete/:id', (req,res) =>{
     //check for the users normal
     const id =req.params.id;
+    console.log(id)
     if(id){
-        Ticket.findById(id)
+        Ticket.findByIdAndDelete(id)
             .then(ticket => {
-                ticket.remove()
-                    .then(res.json({succes: true}))
-                    .catch(err => console.log(err))
+                if(ticket){
+                    res.json({mssg: 'ticket removed', ticket})
+                }else{
+                    res.json({mssg: 'no ticketfound'})
+                }
             })
             .catch(err => {console.log(err); res.json({success: false})})
     }

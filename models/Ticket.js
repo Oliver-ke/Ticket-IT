@@ -7,8 +7,8 @@ const ticketSchema = new Schema({
         required: true
     },
     userId: {
-        type: Schema.Types.ObjectId,
-        ref:'ticketUsers'
+        type: String,
+        required: true
     },
     amount: {
         type: Number,
